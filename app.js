@@ -13,7 +13,7 @@ app.use('/dbz', dbzRoutes)
 
 app.use((req, res, next)=>{
   const status = 404
-  const message = `Count not ${req.method} ${req.url}`
+  const message = `Could not ${req.method} ${req.url}`
 
   next({status, message})
 })
