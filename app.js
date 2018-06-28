@@ -4,17 +4,21 @@ const app = express()
 const bodyParser = require('body-parser')
 app.use(morgan('dev'))
 app.use(bodyParser.json())
+const uuid = require('uuid/v4')
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 9000
 
-app.use((req, res, next)){
+const dbzRoutes = require('./src/routes/dbzChar')
+app.use('/dbz', dbzRoutes)
+
+app.use((req, res, next)=>{
   const status = 404
   const message = `Count not ${req.method} ${req.url}`
 
   next({status, message})
-}
+})
 
-app.use((err, req, res, next){
+app.use((err, req, res, next)=>{
   console.log(err)
   const errorMessage = {}
 
@@ -26,9 +30,11 @@ app.use((err, req, res, next){
   }
 
   res.status(errorMessage.status).send(errorMessage)
-}
+})
 
 
 
-const listener = () => console.log(`listening on port ${port}`)
-app.use(port, listener)
+const listener = () => console.log(`Listening on port ${port}`)
+app.listen(port, listener)
+
+module.exports = app
