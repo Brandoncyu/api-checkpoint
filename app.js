@@ -6,7 +6,7 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 const uuid = require('uuid/v4')
 
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 9001
 
 const dbzRoutes = require('./src/routes/dbzChar')
 app.use('/dbz', dbzRoutes)
