@@ -16,7 +16,7 @@ function create(req, res, next){
 
   if (data.errors) return(next({status: 404, message: 'You need name, race, strongest, and signature'}))
 
-  res.status(200).send({data})
+  res.status(201).send({data})
 }
 
 function update(req,res,next){
@@ -26,7 +26,7 @@ function update(req,res,next){
   let data = model.update(req.body, req.params.id)
   if (data.errors) return next({status: 404, message: 'You need name, race, strongest, and signature'})
 
-  res.status(200).send({data})
+  res.status(201).send({data})
 }
 
 function remove(req, res, next){
