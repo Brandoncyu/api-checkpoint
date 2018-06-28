@@ -26,7 +26,7 @@ function update(req,res,next){
   let data = model.update(req.body, req.params.id)
   if (data.errors) return next({status: 404, message: 'You need name, race, strongest, and signature'})
 
-  res.status(201).send({data})
+  res.status(200).send({data})
 }
 
 function remove(req, res, next){
